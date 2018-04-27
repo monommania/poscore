@@ -1,6 +1,6 @@
 {
   "name": "poscore",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "monomapp pos core module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,5 +29,8 @@
       "json",
       "node"
     ]
+  },
+  "dependencies": {
+    "firebase": "^4.12.1"
   }
 }

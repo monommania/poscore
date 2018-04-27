@@ -1,6 +1,6 @@
 import { IProduct } from '../interfaces/product';
 import { IStorage } from '../interfaces/storage';
-export declare class Product {
+export declare class Products {
     list: IProduct[];
     db: IStorage;
     constructor(db: IStorage);

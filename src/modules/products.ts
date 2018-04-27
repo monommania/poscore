@@ -3,7 +3,7 @@ import {IProduct} from '../interfaces/product';
 import {IStorage} from '../interfaces/storage';
 
 
-export class Product {
+export class Products {
     list: IProduct[];
     db: IStorage;
 
@@ -14,19 +14,19 @@ export class Product {
 
     async fetchAll(): Promise<void> {
         await this.db.loadProductList()
-            .then(function(this: Product, result: IProduct[]) {
+            .then(function(this: Products, result: IProduct[]) {
                 this.list = result;
             });
     }
 
     async findByPlu(plu: string): Promise<IProduct|undefined> {
-        return await this.list.find(function(this: Product, item: IProduct) {
+        return await this.list.find(function(this: Products, item: IProduct) {
             return item.plu===plu;
         })
     }
 
     async findByName(name: string): Promise<IProduct[]> {
-        return await this.list.filter(function(this: Product, item: IProduct) {
+        return await this.list.filter(function(this: Products, item: IProduct) {
             return item.name.toLowerCase().match(/name.toLowerCase()/);
         })
     }

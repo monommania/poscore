@@ -11,6 +11,7 @@ export interface ICartSummary {
     qty: number;
 }
 export interface ICart {
+    id: string;
     items: ICartItems;
     summary: ICartSummary;
 }
