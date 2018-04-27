@@ -3,7 +3,7 @@ import {IProduct} from '../interfaces/product';
 import {IStorage} from '../interfaces/storage';
 
 
-class Product {
+export class Product {
     list: IProduct[];
     db: IStorage;
 
