@@ -1,5 +1,5 @@
-import { ICart, ICartItem } from '../interfaces/cart';
-export declare class Carts {
+import { ICart, ICartItem } from './cart.interface';
+export declare class CartService {
     current: ICart;
     constructor();
     new(): ICart;

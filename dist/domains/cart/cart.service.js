@@ -1,5 +1,5 @@
-import Guid from './guid';
-export class Carts {
+import Guid from '../../modules/guid';
+export class CartService {
     constructor() {
         this.current = {
             id: '',

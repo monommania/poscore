@@ -1,3 +1,3 @@
-import { Products } from './modules/products';
-import { Carts } from './modules/carts';
-export { Products, Carts };
+import { ProductService } from './domains/product/product.service';
+import { CartService } from './domains/cart/cart.service';
+export { ProductService, CartService };

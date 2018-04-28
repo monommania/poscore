@@ -6,14 +6,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-export class Products {
-    constructor(db) {
-        this.db = db;
+export class ProductService {
+    constructor(model) {
+        this.model = model;
         this.list = [];
     }
     fetchAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.db.loadProductList()
+            yield this.model.all()
                 .then(function (result) {
                 this.list = result;
             });

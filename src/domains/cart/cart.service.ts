@@ -1,7 +1,7 @@
-import { ICart, ICartItem, ICartItems, ICartSummary } from '../interfaces/cart';
-import Guid from './guid';
+import { ICart, ICartItem, ICartItems, ICartSummary } from './cart.interface';
+import Guid from '../../modules/guid';
 
-export class Carts {
+export class CartService {
     current: ICart;
 
     constructor() {
