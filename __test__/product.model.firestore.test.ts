@@ -1,5 +1,5 @@
-import {ProductService}  from '../domains/product/product.service';
-import  {ProductModelFirestore} from '../domains/product/product.model.firestore';
+import {ProductService}  from '../src/domains/product/product.service';
+import  {ProductModelFirestore} from '../src/domains/product/product.model.firestore';
 
 
 const store = {
