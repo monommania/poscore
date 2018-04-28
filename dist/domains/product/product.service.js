@@ -17,6 +17,9 @@ export class ProductService {
                 .then((result) => {
                 this.list = result;
                 return Promise.resolve(this.list);
+            })
+                .catch((error) => {
+                return Promise.resolve(error);
             });
         });
     }

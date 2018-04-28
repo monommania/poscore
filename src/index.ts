@@ -1,4 +1,16 @@
 import { ProductService } from './domains/product/product.service';
 import { CartService } from './domains/cart/cart.service';
+import { ProductModelFirestore } from '../dist/domains/product/product.model.firestore';
 
-export { ProductService, CartService };
+const Poscore = () => {
+    const productModel = new ProductModelFirestore({
+        id: "store-0000001",
+        name: "Daily Coffee"
+    });
+    const productService = new ProductService(productModel);
+    return {
+        productService,
+    }
+}
+
+export default Poscore;
