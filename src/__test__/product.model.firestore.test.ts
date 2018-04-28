@@ -3,7 +3,7 @@ import  {ProductModelFirestore} from '../domains/product/product.model.firestore
 
 
 const store = {
-    name: "Daily Coffe",
+    name: "Daily Coffee",
     id: "store-0000000"
 }
 
@@ -44,6 +44,19 @@ describe("testing firestore model functionality", function() {
         expect.assertions(1);
         const result = await model.all();
         expect(result).toEqual([newProduct1, newProduct2]);
+    });
+
+    test('assert update data return success', async () => {
+        expect.assertions(1);
+        newProduct1.price = 17000;
+        const result = await model.update(newProduct1);
+        expect(result).toBe(true);
+    });
+
+    test('assert delete data return success', async () => {
+        expect.assertions(1);
+        const result = await model.remove(newProduct2.plu);
+        expect(result).toBe(true);
     });
 });
 
