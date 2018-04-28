@@ -1,3 +1,6 @@
+const { detect } = require('detect-browser');
+const browser = detect();
+ 
 const fireStorage = function() {
     const firebase = require("firebase");
     // Required for side-effects
@@ -12,10 +15,23 @@ const fireStorage = function() {
     
     // Initialize Cloud Firestore through Firebase
     firebase.initializeApp(config);
-    let firestore = firebase.firestore();
-    firestore.settings(settings);
-    // firestore =  await firestore.enablePersistence();
-    return firestore;
+    
+    if (browser) {
+        firebase.firestore().settings(settings);
+        firebase.firestore().enablePersistence()
+            .then(function() {
+                let firestore = firebase.firestore();
+                return Promise.resolve(firestore);
+            })
+            .catch(error => {
+                let firestore = firebase.firestore();
+                return Promise.resolve(firestore);
+            })
+    } else {
+        let firestore = firebase.firestore();
+        firestore.settings(settings);
+        return Promise.resolve(firestore);
+    }
 }
 
 module.exports = fireStorage;

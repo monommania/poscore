@@ -9,7 +9,7 @@ const store = {
 
 const model = new ProductModelFirestore(store)
 
-const newProduct = {
+const newProduct1 = {
     plu: "0001",
     name: "Mochachino",
     price: 15000,
@@ -22,9 +22,15 @@ const newProduct2 = {
     image: ""
 }
 describe("testing firestore model functionality", function() {
+    test('test connection', async () => {
+        expect.assertions(1);
+        const result = await model.entity();
+        expect(Boolean(result)).toBe(true);
+    });
+
     test('assert add first data and return success', async () => {
         expect.assertions(1);
-        const result = await model.add(newProduct);
+        const result = await model.add(newProduct1);
         expect(result).toBe(true);
     });
 
@@ -37,7 +43,7 @@ describe("testing firestore model functionality", function() {
     test('assert get added data from firestore server', async () => {
         expect.assertions(1);
         const result = await model.all();
-        expect(result).toEqual([newProduct, newProduct2]);
+        expect(result).toEqual([newProduct1, newProduct2]);
     });
 });
 

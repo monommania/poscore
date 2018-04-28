@@ -5,11 +5,11 @@ export interface all {
 }
 
 export interface add {
-    (newProduct: IProduct): Promise< IProduct >;
+    (newProduct: IProduct): Promise< Boolean >;
 }
 
 export interface update {
-    (product: IProduct): Promise< IProduct >;
+    (product: IProduct): Promise< Boolean >;
 }
 
 export interface remove {
