@@ -13,9 +13,10 @@ export class ProductService {
     }
     fetchAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.model.all()
-                .then(function (result) {
+            return yield this.model.all()
+                .then((result) => {
                 this.list = result;
+                return Promise.resolve(this.list);
             });
         });
     }

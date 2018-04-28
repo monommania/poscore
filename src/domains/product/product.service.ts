@@ -11,11 +11,14 @@ export class ProductService {
         this.list = [];    
     }   
 
-    async fetchAll(): Promise<IProduct[]> {
+    async fetchAll(): Promise<IProduct[] | Error> {
         return await this.model.all()
             .then((result: IProduct[]) => {
                 this.list = result;
                 return Promise.resolve(this.list);
+            })
+            .catch((error: Error) => {
+                return Promise.resolve(error);
             });
     }
 

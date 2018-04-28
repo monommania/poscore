@@ -4,7 +4,7 @@ export declare class ProductService {
     list: IProduct[];
     model: IProductModel;
     constructor(model: IProductModel);
-    fetchAll(): Promise<void>;
+    fetchAll(): Promise<IProduct[]>;
     findByPlu(plu: string): Promise<IProduct | undefined>;
     findByName(name: string): Promise<IProduct[]>;
 }

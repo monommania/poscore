@@ -8,7 +8,7 @@ const productService = new ProductService(productModel);
 describe("Test Product Service", function() {
     test('assert fetch all data return desired value', async function() {
         const newProduct = <IProduct>{
-            plu: "003",
+            plu: "0003",
             name: "Indomie",
             price: 1000,
             image: ""
@@ -17,5 +17,5 @@ describe("Test Product Service", function() {
         expect.assertions(1);
         let result = await productService.fetchAll();
         expect(result).toEqual(expect.arrayContaining([newProduct]));
-    })
-})
+    });
+});
