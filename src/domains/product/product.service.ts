@@ -11,10 +11,11 @@ export class ProductService {
         this.list = [];    
     }   
 
-    async fetchAll(): Promise<void> {
-        await this.model.all()
-            .then(function(this: ProductService, result: IProduct[]) {
+    async fetchAll(): Promise<IProduct[]> {
+        return await this.model.all()
+            .then((result: IProduct[]) => {
                 this.list = result;
+                return Promise.resolve(this.list);
             });
     }
 

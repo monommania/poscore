@@ -43,7 +43,7 @@ describe("testing firestore model functionality", function() {
     test('assert get added data from firestore server', async () => {
         expect.assertions(1);
         const result = await model.all();
-        expect(result).toEqual([newProduct1, newProduct2]);
+        expect(result).toEqual(expect.arrayContaining([newProduct1, newProduct2]));
     });
 
     test('assert update data return success', async () => {

@@ -1,12 +1,15 @@
 {
   "name": "poscore",
-  "version": "0.0.6",
+  "version": "0.0.1",
   "description": "monomapp pos core module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc && bash scripts/copyjs.sh",
+    "prepublish": "npm-auto-version",
+    "publish": "npm run build",
+    "postpublish": "git push origin --tags",
     "test": "jest --watchAll"
   },
   "author": "",
