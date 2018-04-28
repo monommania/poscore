@@ -8,12 +8,13 @@ const fireStorage = function() {
         authDomain: "monommania-9e2fb.firebaseapp.com",
         projectId: "monommania-9e2fb",
     };
-
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    
     // Initialize Cloud Firestore through Firebase
     firebase.initializeApp(config);
-    firestore =  firebase.firestore();
-    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    let firestore = firebase.firestore();
     firestore.settings(settings);
+    // firestore =  await firestore.enablePersistence();
     return firestore;
 }
 

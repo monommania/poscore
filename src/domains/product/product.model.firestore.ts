@@ -10,7 +10,7 @@ export class ProductModelFirestore implements IProductModel {
     constructor(store: {id: string, name: string}) {
         this.storage = fireStorage();
         this.store = store;
-        this.entity = this.storage.collection('product');
+        this.entity = this.storage.collection(store.id).doc('product').collection('list');
     }
 
     async all() {
