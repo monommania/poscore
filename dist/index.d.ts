@@ -1,5 +1,7 @@
 import { ProductService } from './domains/product/product.service';
-declare const Poscore: () => {
-    productService: ProductService;
+import { ProductModelFirestore } from './domains/product/product.model.firestore';
+declare const _default: {
+    ProductService: typeof ProductService;
+    ProductModelFirestore: typeof ProductModelFirestore;
 };
-export default Poscore;
+export default _default;

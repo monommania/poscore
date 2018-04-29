@@ -8,8 +8,7 @@
     "prebuild": "rm -rf dist",
     "build": "tsc && bash scripts/copyjs.sh",
     "prepublish": "npm-auto-version",
-    "publish": "npm run build",
-    "postpublish": "git push origin --tags",
+    "publish": "git push origin --tags",
     "test": "jest --watchAll"
   },
   "author": "",
