@@ -36,9 +36,7 @@
     ],
     "testPathIgnorePatterns": [
         "<rootDir>/.git/"
-     ],
-    "cache": false,
-    "watch": true
+     ]
   },
   "dependencies": {
     "detect-browser": "^2.4.0",
