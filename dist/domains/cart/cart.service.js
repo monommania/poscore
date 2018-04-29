@@ -25,6 +25,7 @@ export class CartService {
         return this.current;
     }
     addItem(newItem) {
+        newItem.qty = newItem.qty ? newItem.qty : 1;
         let existing = this.current.items.find(item => item.plu === newItem.plu);
         if (existing) {
             existing.qty++;
