@@ -33,5 +33,5 @@ const fireStorage = function() {
         return Promise.resolve(firestore);
     }
 }
-
-module.exports = fireStorage;
+const storage = fireStorage();
+module.exports = storage;

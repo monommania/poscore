@@ -10,7 +10,7 @@ export class ProductModelFirestore implements IProductModel {
     entityName = 'product';
 
     constructor(store: IStore) {
-        this.connection = fireStorage();
+        this.connection = fireStorage;
         this.store = store;
     }
 

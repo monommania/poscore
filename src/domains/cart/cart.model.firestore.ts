@@ -11,7 +11,7 @@ export class CartModelFirestore implements ICartModel {
 
     constructor(store: IStore) {
         this.store = store;
-        this.connection = fireStorage();
+        this.connection = fireStorage;
     }
     
     async entity(listener: Function|null=null) {

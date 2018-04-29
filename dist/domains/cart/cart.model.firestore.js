@@ -11,7 +11,7 @@ export class CartModelFirestore {
     constructor(store) {
         this.entityName = "transactions";
         this.store = store;
-        this.connection = fireStorage();
+        this.connection = fireStorage;
     }
     entity(listener = null) {
         return __awaiter(this, void 0, void 0, function* () {

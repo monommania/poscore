@@ -10,7 +10,7 @@ import fireStorage from './../../storage/firestorage';
 export class ProductModelFirestore {
     constructor(store) {
         this.entityName = 'product';
-        this.connection = fireStorage();
+        this.connection = fireStorage;
         this.store = store;
     }
     entity(listener = null) {
