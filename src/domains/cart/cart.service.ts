@@ -22,6 +22,8 @@ export class CartService {
     new (): ICart {
         this.current.id = Guid();
         this.current.items.length = 0;
+        this.current.summary.qty = 0;
+        this.current.summary.total = 0;
         return this.current;
     }
     
