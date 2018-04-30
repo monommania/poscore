@@ -66,7 +66,10 @@ export class CartService {
     }
     checkOut() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.model.add(this.current);
+            let transaction = JSON.parse(JSON.stringify(this.current));
+            return yield this.model.add(transaction)
+                .then(result => Promise.resolve(result))
+                .catch(error => Promise.reject(error));
         });
     }
 }
