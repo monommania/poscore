@@ -72,7 +72,10 @@ export class CartService {
     }
 
     async checkOut(): Promise<Boolean> {
-        return await this.model.add(this.current);
+        let transaction = JSON.parse(JSON.stringify(this.current));            
+        return await this.model.add(transaction)
+            .then(result => Promise.resolve(result))
+            .catch(error => Promise.reject(error));
     }
 
 }
