@@ -12,7 +12,7 @@ export class CartService {
     constructor(model) {
         this.model = model;
         this.current = {
-            id: '',
+            id: Guid(),
             date: getDateNow(),
             time: getTimeNow(),
             items: [],
