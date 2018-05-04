@@ -17,7 +17,9 @@ export class ProductModelFirestore implements IProductModel {
     async entity(listener: Function|null = null) {
         var listener = listener || null;
         return await this.connection.then(db => {
-            let entity = db.collection(this.store.id).doc(this.entityName).collection('list');
+            let entity = db.collection(this.store.id)
+                .doc(this.entityName)
+                .collection('list');
 
             // listen to document/data changes and bind to listener
             entity.onSnapshot({ includeQueryMetadataChanges: true }, function(snapshot) {
@@ -36,6 +38,7 @@ export class ProductModelFirestore implements IProductModel {
         return await this.entity(listener)
             .then(product => {
                 return product
+                    .orderBy('name')
                     .get()
                     .then(function(snapshots) {
                         const data = <any>[];
