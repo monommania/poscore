@@ -12,7 +12,8 @@ export interface ICartSummary {
 }
 export interface ICart {
     id: string;
-    date: Date;
+    date: string;
+    time: number;
     items: ICartItems;
     summary: ICartSummary;
 }

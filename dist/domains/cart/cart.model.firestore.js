@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import fireStorage from './../../storage/firestorage';
 export class CartModelFirestore {
     constructor(store) {
-        this.entityName = "transactions";
+        this.entityName = "transaction";
         this.store = store;
         this.connection = fireStorage;
     }

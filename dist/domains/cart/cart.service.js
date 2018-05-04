@@ -7,12 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import Guid from '../../modules/guid';
+import { getDateNow, getTimeNow } from '../../modules/datetime';
 export class CartService {
     constructor(model) {
         this.model = model;
         this.current = {
             id: '',
-            date: (new Date()),
+            date: getDateNow(),
+            time: getTimeNow(),
             items: [],
             summary: {
                 total: 0,
@@ -22,8 +24,9 @@ export class CartService {
     }
     new() {
         this.current.id = Guid();
-        this.current.date = (new Date()),
-            this.current.items.length = 0;
+        this.current.date = getDateNow();
+        this.current.time = getTimeNow();
+        this.current.items.length = 0;
         this.current.summary.qty = 0;
         this.current.summary.total = 0;
         return this.current;

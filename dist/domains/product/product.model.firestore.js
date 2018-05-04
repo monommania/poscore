@@ -39,6 +39,7 @@ export class ProductModelFirestore {
                 .then(product => {
                 return product
                     .orderBy('name')
+                    .orderBy('plu')
                     .get()
                     .then(function (snapshots) {
                     const data = [];
