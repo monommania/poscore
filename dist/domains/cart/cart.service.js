@@ -12,6 +12,7 @@ export class CartService {
         this.model = model;
         this.current = {
             id: '',
+            date: (new Date()),
             items: [],
             summary: {
                 total: 0,
@@ -21,7 +22,8 @@ export class CartService {
     }
     new() {
         this.current.id = Guid();
-        this.current.items.length = 0;
+        this.current.date = (new Date()),
+            this.current.items.length = 0;
         this.current.summary.qty = 0;
         this.current.summary.total = 0;
         return this.current;

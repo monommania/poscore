@@ -17,7 +17,9 @@ export class ProductModelFirestore {
         return __awaiter(this, void 0, void 0, function* () {
             listener = listener || null;
             return yield this.connection.then(db => {
-                let entity = db.collection(this.store.id).doc(this.entityName).collection('list');
+                let entity = db.collection(this.store.id)
+                    .doc(this.entityName)
+                    .collection('list');
                 entity.onSnapshot({ includeQueryMetadataChanges: true }, function (snapshot) {
                     snapshot.docChanges.forEach(function (change) {
                         if (!snapshot.metadata.fromCache) {
@@ -36,6 +38,7 @@ export class ProductModelFirestore {
             return yield this.entity(listener)
                 .then(product => {
                 return product
+                    .orderBy('name')
                     .get()
                     .then(function (snapshots) {
                     const data = [];
