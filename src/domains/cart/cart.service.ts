@@ -11,7 +11,7 @@ export class CartService {
     constructor(model: ICartModel) {
         this.model = model;
         this.current = <ICart>{
-            id: '',
+            id: Guid(),
             date: getDateNow(),
             time: getTimeNow(),
             items: [],
