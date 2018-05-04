@@ -1,25 +1,22 @@
 import fireStorage from './../../storage/firestorage';
-import {IProductModel} from './product.model.interface';
-import {IProduct} from './product.interface';
-import {IStore} from '../store/store.interface';
+import { ICart } from "../cart/cart.interface";
+import { IStore } from "../store/store.interface";
 
-// this class must implement ProductModelInterface
-export class ProductModelFirestore implements IProductModel {
-    connection: any;
+export class TransactionModelFirestore {
+
     store: IStore;
-    entityName = 'product';
+    connection: any;
+    entityName = "transaction";
 
     constructor(store: IStore) {
-        this.connection = fireStorage;
         this.store = store;
+        this.connection = fireStorage;
     }
-
-    async entity(listener: Function|null = null) {
-        var listener = listener || null;
+    
+    async entity(listener: Function|null=null) {
+        var listener = listener;
         return await this.connection.then(db => {
-            let entity = db.collection(this.store.id)
-                .doc(this.entityName)
-                .collection('list');
+            let entity = db.collection(this.store.id).doc(this.entityName).collection('list');
 
             // listen to document/data changes and bind to listener
             entity.onSnapshot({ includeQueryMetadataChanges: true }, function(snapshot) {
@@ -34,12 +31,11 @@ export class ProductModelFirestore implements IProductModel {
         });
     }
 
-    async all(listener: Function|null = null): Promise< IProduct[] > {
+    async fetchByDate(toFilter: string, listener: Function|null = null): Promise< ICart[] > {
         return await this.entity(listener)
             .then(product => {
                 return product
-                    .orderBy('name')
-                    .orderBy('plu')
+                    .where('date', "==", toFilter)
                     .get()
                     .then(function(snapshots) {
                         const data = <any>[];
@@ -51,24 +47,23 @@ export class ProductModelFirestore implements IProductModel {
                     .catch((error: Error) => Promise.reject(error));
             });
     }
-    
-    async add(newProduct: IProduct): Promise<Boolean> {
-        return await this.entity()
+
+    async fetchByDateRange(fromFilter: string, toFilter: string, listener: Function|null = null): Promise< ICart[] > {
+        return await this.entity(listener)
             .then(product => {
-                return product.doc(newProduct.plu).set(newProduct)
-                    .then(function() {
-                        return Promise.resolve(true)
+                return product
+                    .where('date', ">=", fromFilter)
+                    .where('date', "<=", toFilter)
+                    .orderBy('date', 'desc')
+                    .get()
+                    .then(function(snapshots) {
+                        const data = <any>[];
+                        snapshots.forEach(doc => {
+                            data.push(doc.data());
+                        });
+                        return Promise.resolve(data);
                     })
-                    .catch((error: Error) => Promise.reject(error))
+                    .catch((error: Error) => Promise.reject(error));
             });
     }
-
-    async update(product: IProduct): Promise<Boolean> {
-        return await true;
-    }
-
-    async remove(plu: string): Promise<Boolean> {
-        return await true;
-    }
 }
-

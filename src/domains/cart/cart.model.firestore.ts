@@ -7,7 +7,7 @@ export class CartModelFirestore implements ICartModel {
 
     store: IStore;
     connection: any;
-    entityName = "transactions";
+    entityName = "transaction";
 
     constructor(store: IStore) {
         this.store = store;

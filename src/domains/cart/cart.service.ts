@@ -2,6 +2,7 @@ import { ICart, ICartItem, ICartItems, ICartSummary } from './cart.interface';
 import { ICartModel } from './cart.model.interface';
 
 import Guid from '../../modules/guid';
+import { getDateString, getDateNow, getTimeNow } from '../../modules/datetime';
 
 export class CartService {
     current: ICart;
@@ -11,7 +12,8 @@ export class CartService {
         this.model = model;
         this.current = <ICart>{
             id: '',
-            date: (new Date()),
+            date: getDateNow(),
+            time: getTimeNow(),
             items: [],
             summary: {
                 total: 0,
@@ -22,7 +24,8 @@ export class CartService {
     
     new (): ICart {
         this.current.id = Guid();
-        this.current.date = (new Date()),
+        this.current.date = getDateNow();
+        this.current.time = getTimeNow();
         this.current.items.length = 0;
         this.current.summary.qty = 0;
         this.current.summary.total = 0;
