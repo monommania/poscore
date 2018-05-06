@@ -37,6 +37,7 @@ export class TransactionModelFirestore {
                 .then(product => {
                 return product
                     .where('date', "==", toFilter)
+                    .orderBy('time', 'desc')
                     .get()
                     .then(function (snapshots) {
                     const data = [];
