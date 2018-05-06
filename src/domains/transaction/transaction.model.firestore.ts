@@ -55,6 +55,7 @@ export class TransactionModelFirestore {
                 return product
                     .where('date', ">=", fromFilter)
                     .where('date', "<=", toFilter)
+                    .orderBy('date', 'desc')
                     .orderBy('time', 'desc')
                     .get()
                     .then(function(snapshots) {
