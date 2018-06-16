@@ -23,7 +23,6 @@ describe("Test transaction service functionality", () => {
     it('should return group of transaction', async () => {
         expect.assertions(1);
         let result = await service.listGroupedTransactionByRange((new Date("2018-4-4")), (new Date()));
-        console.log("***", result);
         expect(result).toBeInstanceOf(Object);
     });
 });

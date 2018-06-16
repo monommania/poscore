@@ -9,12 +9,12 @@ export class TransactionService {
             .catch(error => Promise.resolve(error));
     }
     fetchByDateRange(fromDate, toDate) {
-        return this.model.fetchByDateRange(getDateString(fromDate), getDateString(toDate))
+        return this.model.fetchByDateRange(fromDate.getTime(), toDate.getTime())
             .then(result => Promise.resolve(result))
             .catch(error => Promise.resolve(error));
     }
     listGroupedTransactionByRange(fromDate, toDate) {
-        return this.model.listGroupedTransactionByRange(getDateString(fromDate), getDateString(toDate))
+        return this.model.listGroupedTransactionByRange(fromDate.getTime(), toDate.getTime())
             .then(result => Promise.resolve(result))
             .catch(error => Promise.resolve(error));
     }

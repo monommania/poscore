@@ -14,13 +14,13 @@ export class TransactionService {
     }
 
     fetchByDateRange(fromDate: Date, toDate: Date) {
-        return this.model.fetchByDateRange(getDateString(fromDate), getDateString(toDate))
+        return this.model.fetchByDateRange(fromDate.getTime(), toDate.getTime())
             .then(result => Promise.resolve(result))
             .catch(error => Promise.resolve(error));
     }
     
     listGroupedTransactionByRange(fromDate: Date, toDate: Date) {
-        return this.model.listGroupedTransactionByRange(getDateString(fromDate), getDateString(toDate))
+        return this.model.listGroupedTransactionByRange(fromDate.getTime(), toDate.getTime())
             .then(result => Promise.resolve(result))
             .catch(error => Promise.resolve(error));
     }

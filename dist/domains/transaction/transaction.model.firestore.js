@@ -55,9 +55,8 @@ export class TransactionModelFirestore {
             return yield this.entity(listener)
                 .then(transactions => {
                 return transactions
-                    .where('date', ">=", fromFilter)
-                    .where('date', "<=", toFilter)
-                    .orderBy('date', 'desc')
+                    .where('time', ">=", fromFilter)
+                    .where('time', "<=", toFilter)
                     .orderBy('time', 'desc')
                     .get()
                     .then(function (snapshots) {
@@ -84,7 +83,6 @@ export class TransactionModelFirestore {
                     let data = groupedData.find(function (data) {
                         return data['date'] == transaction.date;
                     });
-                    console.log("***", data);
                     if (!!data) {
                         data.qty += transaction.summary.qty;
                         data.total += transaction.summary.total;

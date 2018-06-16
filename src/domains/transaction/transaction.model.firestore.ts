@@ -49,14 +49,14 @@ export class TransactionModelFirestore {
             });
     }
 
-    async fetchByDateRange(fromFilter: string, toFilter: string, listener: Function|null = null): Promise< ICart[] > {
+    async fetchByDateRange(fromFilter: number, toFilter: number, listener: Function|null = null): Promise< ICart[] > {
         return await this.entity(listener)
             .then(transactions => {
                 return transactions
-                    .where('date', ">=", fromFilter)
-                    .where('date', "<=", toFilter)
-                    .orderBy('date', 'desc')
+                    .where('time', ">=", fromFilter)
+                    .where('time', "<=", toFilter)
                     .orderBy('time', 'desc')
+                    // .orderBy('date', 'desc')
                     .get()
                     .then(function(snapshots) {
                         const data = <any>[];
@@ -69,7 +69,7 @@ export class TransactionModelFirestore {
             });
     }
 
-    async listGroupedTransactionByRange(fromFilter: string, toFilter: string) {
+    async listGroupedTransactionByRange(fromFilter: number, toFilter: number) {
         return this.fetchByDateRange(fromFilter, toFilter)
         .then(results => {
                 let groupedData: Array<{
@@ -86,7 +86,6 @@ export class TransactionModelFirestore {
                     let data = groupedData.find(function(data) {
                         return data['date']==transaction.date;
                     });
-                    console.log("***", data);
                     if (!!data) {
                         data.qty += transaction.summary.qty;
                         data.total += transaction.summary.total;

@@ -7,8 +7,8 @@ export declare class TransactionModelFirestore {
     constructor(store: IStore);
     entity(listener?: Function | null): Promise<any>;
     fetchByDate(toFilter: string, listener?: Function | null): Promise<ICart[]>;
-    fetchByDateRange(fromFilter: string, toFilter: string, listener?: Function | null): Promise<ICart[]>;
-    listGroupedTransactionByRange(fromFilter: string, toFilter: string): Promise<{
+    fetchByDateRange(fromFilter: number, toFilter: number, listener?: Function | null): Promise<ICart[]>;
+    listGroupedTransactionByRange(fromFilter: number, toFilter: number): Promise<{
         data: {
             date: string;
             qty: number;
