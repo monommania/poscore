@@ -12,5 +12,6 @@ export declare class TransactionModelFirestore {
         date: string;
         qty: number;
         total: number;
+        list: ICart[];
     }[]>;
 }

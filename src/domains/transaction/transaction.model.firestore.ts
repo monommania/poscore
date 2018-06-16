@@ -75,7 +75,8 @@ export class TransactionModelFirestore {
                 let groupedData: Array<{
                     date: string,
                     qty: number,
-                    total: number
+                    total: number,
+                    list: ICart[]
                 }>=[];
                 results.map(transaction => {
                     let data = groupedData.find(function(data) {
@@ -84,10 +85,15 @@ export class TransactionModelFirestore {
                     if (data) {
                         data.qty += transaction.summary.qty;
                         data.total += transaction.summary.total;
+                        data.list.push(transaction);
                     } else {
-                        data = {date: transaction.date, qty: transaction.summary.qty, total: transaction.summary.total}
+                        data = {
+                            date: transaction.date, 
+                            qty: transaction.summary.qty, 
+                            total: transaction.summary.total,
+                            list: [transaction]
+                        }
                     }
-                    data['transactions'].push(transaction);
                     groupedData.push(data);     
                 });
                 return Promise.resolve(groupedData)
