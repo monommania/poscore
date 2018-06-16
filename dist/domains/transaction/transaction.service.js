@@ -13,4 +13,9 @@ export class TransactionService {
             .then(result => Promise.resolve(result))
             .catch(error => Promise.resolve(error));
     }
+    listGroupedTransactionByRange(fromDate, toDate) {
+        return this.model.listGroupedTransactionByRange(getDateString(fromDate), getDateString(toDate))
+            .then(result => Promise.resolve(result))
+            .catch(error => Promise.resolve(error));
+    }
 }

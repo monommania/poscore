@@ -34,8 +34,8 @@ export class TransactionModelFirestore {
     fetchByDate(toFilter, listener = null) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.entity(listener)
-                .then(product => {
-                return product
+                .then(transactions => {
+                return transactions
                     .where('date', "==", toFilter)
                     .orderBy('time', 'desc')
                     .get()
@@ -53,8 +53,8 @@ export class TransactionModelFirestore {
     fetchByDateRange(fromFilter, toFilter, listener = null) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.entity(listener)
-                .then(product => {
-                return product
+                .then(transactions => {
+                return transactions
                     .where('date', ">=", fromFilter)
                     .where('date', "<=", toFilter)
                     .orderBy('date', 'desc')
@@ -68,6 +68,28 @@ export class TransactionModelFirestore {
                     return Promise.resolve(data);
                 })
                     .catch((error) => Promise.reject(error));
+            });
+        });
+    }
+    listGroupedTransactionByRange(fromFilter, toFilter) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.fetchByDateRange(fromFilter, toFilter)
+                .then(results => {
+                let groupedData = [];
+                results.map(transaction => {
+                    let data = groupedData.find(function (data) {
+                        return data['date'] == transaction.date;
+                    });
+                    if (data) {
+                        data.qty += transaction.summary.qty;
+                        data.total += transaction.summary.total;
+                    }
+                    else {
+                        data = { date: transaction.date, qty: transaction.summary.qty, total: transaction.summary.total };
+                        groupedData.push(data);
+                    }
+                });
+                return Promise.resolve(groupedData);
             });
         });
     }

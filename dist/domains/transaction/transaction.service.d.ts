@@ -4,4 +4,5 @@ export declare class TransactionService {
     constructor(model: any);
     fetchByDate(date: Date): Promise<any>;
     fetchByDateRange(fromDate: Date, toDate: Date): Promise<any>;
+    listGroupedTransactionByRange(fromDate: Date, toDate: Date): Promise<any>;
 }
