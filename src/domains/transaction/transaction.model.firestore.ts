@@ -86,7 +86,8 @@ export class TransactionModelFirestore {
                     let data = groupedData.find(function(data) {
                         return data['date']==transaction.date;
                     });
-                    if (data) {
+                    console.log("***", data);
+                    if (!!data) {
                         data.qty += transaction.summary.qty;
                         data.total += transaction.summary.total;
                         data.list.push(transaction);
@@ -97,8 +98,8 @@ export class TransactionModelFirestore {
                             total: transaction.summary.total,
                             list: [transaction]
                         }
+                        groupedData.push(data);    
                     }
-                    groupedData.push(data);    
                     summary.qty += transaction.summary.qty; 
                     summary.total += transaction.summary.total; 
                 });
