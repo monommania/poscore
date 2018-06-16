@@ -78,6 +78,10 @@ export class TransactionModelFirestore {
                     total: number,
                     list: ICart[]
                 }>=[];
+                let summary = {
+                    qty: 0,
+                    total: 0
+                }
                 results.map(transaction => {
                     let data = groupedData.find(function(data) {
                         return data['date']==transaction.date;
@@ -94,9 +98,11 @@ export class TransactionModelFirestore {
                             list: [transaction]
                         }
                     }
-                    groupedData.push(data);     
+                    groupedData.push(data);    
+                    summary.qty += transaction.summary.qty; 
+                    summary.total += transaction.summary.total; 
                 });
-                return Promise.resolve(groupedData)
+                return Promise.resolve({data: groupedData, summary: summary});
             })
     }
 }

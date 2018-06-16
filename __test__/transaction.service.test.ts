@@ -24,6 +24,6 @@ describe("Test transaction service functionality", () => {
         expect.assertions(1);
         let result = await service.listGroupedTransactionByRange((new Date("2018-4-4")), (new Date()));
         console.log("***", result);
-        expect(result).toBeInstanceOf(Array);
+        expect(result).toBeInstanceOf(Object);
     });
 });
