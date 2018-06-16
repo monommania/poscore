@@ -86,8 +86,9 @@ export class TransactionModelFirestore {
                     }
                     else {
                         data = { date: transaction.date, qty: transaction.summary.qty, total: transaction.summary.total };
-                        groupedData.push(data);
                     }
+                    data['transactions'].push(transaction);
+                    groupedData.push(data);
                 });
                 return Promise.resolve(groupedData);
             });
