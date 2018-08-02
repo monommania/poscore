@@ -66,7 +66,14 @@ export class ProductModelFirestore {
     }
     update(product) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield true;
+            return yield this.entity()
+                .then(product => {
+                return product.doc(product.plu).set(product)
+                    .then(function () {
+                    return Promise.resolve(true);
+                })
+                    .catch((error) => Promise.reject(error));
+            });
         });
     }
     remove(plu) {

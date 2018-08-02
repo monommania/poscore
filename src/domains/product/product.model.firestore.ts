@@ -64,7 +64,14 @@ export class ProductModelFirestore implements IProductModel {
     }
 
     async update(product: IProduct): Promise<Boolean> {
-        return await true;
+        return await this.entity()
+            .then(product => {
+                return product.doc(product.plu).set(product)
+                    .then(function() {
+                        return Promise.resolve(true)
+                    })
+                    .catch((error: Error) => Promise.reject(error))
+            });
     }
 
     async remove(plu: string): Promise<Boolean> {
